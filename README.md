@@ -1,7 +1,9 @@
 # java-fundamentals
 
-This repo is created for learning java fundamentals for the first two weeks in java401d5 course.
+This repo is created for learning java fundamentals for the first two weeks in Amman-java401d5 course.
+
+and will be updated as we learn more.
 
 Table of content:
 
-1. [Basic](./basic/README.md)
+1. [Basics](./basics)
