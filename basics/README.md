@@ -15,6 +15,6 @@ and it contain:
 To run the program with all method run these command in your terminal:
 
 ```bash
-$ javac Main.java
-$ java Main
+javac Main.java
+java Main
 ```
