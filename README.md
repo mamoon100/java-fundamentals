@@ -7,3 +7,4 @@ and will be updated as we learn more.
 Table of content:
 
 1. [Basics](./basics)
+2. [Basic Library](./basiclibrary)
