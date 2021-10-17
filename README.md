@@ -9,3 +9,4 @@ Table of content:
 1. [Basics](./basics)
 2. [Basic Library](./basiclibrary)
 3. [Linter](./linter)
+4. [Inheritance](./inheritance)
