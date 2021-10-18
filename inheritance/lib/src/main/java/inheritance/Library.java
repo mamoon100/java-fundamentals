@@ -7,17 +7,18 @@ import java.util.Iterator;
 
 public class Library {
     public static void main(String[] args) {
+
         Restaurant mac = new Restaurant("Macdonalds", 5, "$");
         System.out.println("Initialize mac restaurant =>> " + mac.toString());
-        Review review = new Review("Nice res", "Mamoun", 0);
-        System.out.println("set up normal review with no restaurant associated =>> " + review.toString());
+        Review resReview = new Review("Nice res", "Mamoun", 0);
+        System.out.println("set up normal review with no restaurant associated =>> " + resReview.toString());
 
-        System.out.println("the restaurant will no cahnge after the review becuase we didn't add it =>> " + mac.toString());
-        mac.addReview(review);
+        System.out.println("the restaurant will not change after the review because we didn't add it =>> " + mac.toString());
+        mac.addReview(resReview);
         System.out.println("Added the review to the mac restaurant =>> " + mac.toString());
 
         System.out.print("if you try to add the same review to the same restaurant => ");
-        mac.addReview(review);
+        mac.addReview(resReview);
 
         System.out.println("let's create user and make him make review on mac");
         User mamoun = new User("mamoun");
@@ -28,7 +29,40 @@ public class Library {
         System.out.print("If the same user to add multi review =>> ");
         Review userReviewq = new Review(mac, "good", mamoun, 2);
 
-        System.out.println("The restaurant rating will not change due that they refuse multiable review from the same user =>> " + mac.toString());
+        System.out.println("The restaurant rating will not change due that they refuse multiple review from the same user =>> " + mac.toString());
+        //================================================================================
+        System.out.println("=============================================================");
+        System.out.println("Now let's create shop called wideScreen =>> ");
+        Shop wideScreen = new Shop("Wide Screen", "Shop that sells manga and figures for anime", 5, "$$");
+        System.out.println(wideScreen.toString());
+        System.out.println("Now let's create general review about the shop but not adding it to specific shop");
+        Review shopReview = new Review("The employee was nice", "Mamoun", 4);
+        System.out.println("as we can see the rate will not change because we didn't add this review to specific shop =>> \n" + wideScreen.toString());
+        wideScreen.addReview(shopReview);
+        System.out.println("Now we add the review to the shop =>> \n" + wideScreen.toString());
+        System.out.print("Let's try to add the same review to the same shop =>> ");
+        wideScreen.addReview(shopReview);
+        System.out.println("now let's make the same user that reviews the mac, review the shop");
+        Review userShopReview = new Review(wideScreen, "Not good", mamoun, 0);
+        System.out.println("The review was from user mamoun and it was =>> " + userShopReview.toString());
+        System.out.println("Now the shop is =>> " + wideScreen.toString());
+        //================================================================================
+        System.out.println("=============================================================");
+        System.out.println("Now let's create shop called wideScreen =>> ");
+        Theater tajMall = new Theater("Taj MAll", 5);
+        System.out.println(tajMall.toString());
+        System.out.println("Now let's create general review about the theater but not adding it to specific theater");
+        Review theaterReview = new Review("The employee was nice", "Mamoun", 4);
+        System.out.println("as we can see the rate will not change because we didn't add this review to specific theater =>> \n" + tajMall.toString());
+        tajMall.addReview(theaterReview);
+        System.out.println("Now we add the review to the theater =>> \n" + tajMall.toString());
+        System.out.print("Let's try to add the same review to the same shop =>> ");
+        tajMall.addReview(theaterReview);
+        System.out.println("now let's make the same user that reviews the mac, review the theater");
+        Review userTheaterReview = new Review(tajMall, "Not good", mamoun, 0, "Ice age III");
+        System.out.println("The review was from user mamoun and it was =>> " + userTheaterReview.toString());
+        System.out.println("Now the shop is =>> " + tajMall.toString());
+
 
     }
 }

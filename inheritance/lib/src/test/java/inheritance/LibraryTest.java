@@ -5,6 +5,8 @@ package inheritance;
 
 import org.junit.Test;
 
+import java.util.HashSet;
+
 import static org.junit.Assert.*;
 
 public class LibraryTest {
@@ -18,15 +20,62 @@ public class LibraryTest {
     User user = new User("Hanaa");
     Review userReview = new Review(testRes, "not good", user, 1);
     //again this will affect the rating due this attaches directly to the restaurant so the rating will be 5+3+1=9 => 9/3 = 3
+    //========================
 
+    // creating Shop.
+    Shop testShop = new Shop("itBeep", "it company ", 4, "$$");
+    // creating review not include to specific shop, so it will not affect unless we sit it up to certain shop.
+    Review noShopReview = new Review("Good", "Mamoun", 4);
+    // creating review to a restaurant
+    Review shopReview = new Review(testShop, "Nice", "Batool", 3); // this review will be directly attach to testRes so the star will be 4+3=7 => 7/2=3.5
+    // create user then append the user to review
+    User userShop = new User("Ahmed");
+    Review userShopReview = new Review(testShop, "excleent", userShop, 5);
+    //again this will affect the rating due this attaches directly to the shop so the rating will be 4+3+5=12 => 12/3 = 4
+//========================
+
+    // creating Theater.
+    Theater testTheater = new Theater("atlas", 2);
+    // creating review not include to specific Theater, so it will not affect unless we sit it up to certain shop.
+    Review noTheaterReview = new Review("Good", "Mamoun", 4);
+    // creating review to a restaurant
+    Review theaterReview = new Review(testTheater, "Nice", "Batool", 3, "Toy Story 2"); // this review will be directly attach to testRes so the star will be 3+2=5 => 5/2=2.5
+    // create user then append the user to review
+    User userTheater = new User("Abdllah");
+    Review userTheaterReview = new Review(testTheater, "eww", userTheater, 1, "Venom 2");
+    //again this  will affect the rating due this attaches directly to the restaurant so the rating will be 2+3+1=6 => 6/3 = 2.
 
     @Test
     public void restaurantTest() {
         // test for creating res with the initial value of rating of 5
 
-        assertEquals("The Stars are not the same", (int) this.testRes.getStars(), 3); // the 4 and not 5 because of the Batool review
+        assertEquals("The Stars are not the same", (int) this.testRes.getRating(), 3); // the 3 and not 5 because of the reviews.
         assertEquals("The price does not equal", this.testRes.getPrice(), "$");
         assertEquals("The name does not equal each other", this.testRes.getName(), "Macdonalds");
+
+
+    }
+
+    @Test
+    public void shopTest() {
+        // test for creating shop with the initial value of rating of 4
+
+        assertEquals("The Stars are not the same", (int) this.testShop.getRating(), 4); // the 4 and not 5 because of the  reviews.
+        assertEquals("The price does not equal", this.testShop.getPrice(), "$$");
+        assertEquals("The name does not equal each other", this.testShop.getName(), "itBeep");
+
+
+    }
+
+    @Test
+    public void theaterTest() {
+        // test for creating Theater with the initial value of rating of 4
+        HashSet<String> testingMovieList = new HashSet<>();
+        testingMovieList.add("Toy Story 2");
+        testingMovieList.add("Venom 2");
+        assertEquals("The Stars are not the same", (int) this.testTheater.getRating(), 2); // the 2 and not 5 because of the  reviews.
+        assertEquals("The movie list is not equal", this.testTheater.getMovieList(), testingMovieList);
+        assertEquals("The name does not equal each other", this.testTheater.getName(), "atlas");
 
 
     }
@@ -37,11 +86,11 @@ public class LibraryTest {
         // check for updating star method
         userReview.updateStars(4);
         // 5+3+4 =12 => 12/3=> 4
-        assertEquals("The star should be equal to 4", (int) this.testRes.getStars(), 4);
+        assertEquals("The star should be equal to 4", (int) this.testRes.getRating(), 4);
 
         // creating another review for the same user will not affect the rating
         Review sameUserReview = new Review(testRes, "eww", user, 0);
         //as we say this will not affect so the star should maintain 4
-        assertEquals("The star should be equal to 4", (int) this.testRes.getStars(), 4);
+        assertEquals("The star should be equal to 4", (int) this.testRes.getRating(), 4);
     }
 }
